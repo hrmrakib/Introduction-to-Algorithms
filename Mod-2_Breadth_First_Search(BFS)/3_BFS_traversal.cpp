@@ -9,6 +9,7 @@ void bfs(int src) // o(v + e) -> vertex + edge (time complexity)
 {
     queue<int> q;
     q.push(src);
+    visited[src] = true;
 
     while (!q.empty()) //  o(n)
     {
