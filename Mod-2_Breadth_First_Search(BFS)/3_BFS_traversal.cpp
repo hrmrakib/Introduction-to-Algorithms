@@ -37,8 +37,6 @@ int main()
     int n, e;
     cin >> n >> e;
 
-    int a[n];
-
     while (e--)
     {
         int a, b;
