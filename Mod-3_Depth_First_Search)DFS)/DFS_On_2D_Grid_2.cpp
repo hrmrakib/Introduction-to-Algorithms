@@ -13,7 +13,7 @@ bool valid(int i, int j)
         return false;
     return true;
 }
-void dfs(int si, int sj)
+void dfs(int si, int sj) 
 {
     cout << si << " " << sj << endl;
     visited[si][sj] = true;

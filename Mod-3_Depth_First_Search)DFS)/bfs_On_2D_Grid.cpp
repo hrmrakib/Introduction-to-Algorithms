@@ -14,6 +14,7 @@ bool valid(int i, int j)
         return false;
     return true;
 }
+
 void bfs(int si, int sj)
 {
     queue<pair<int, int>> q;

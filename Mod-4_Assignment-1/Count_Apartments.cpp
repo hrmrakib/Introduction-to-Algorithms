@@ -33,32 +33,30 @@ void dfs(int si, int sj)
 int main()
 {
     cin >> n >> m;
-    int si, sj, di, dj;
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
             cin >> grid[i][j];
-            if (grid[i][j] == 'A')
-            {
-                si = i;
-                sj = j;
-            }
-            if (grid[i][j] == 'B')
-            {
-                di = i;
-                dj = j;
-            }
         }
     }
 
     memset(visited, false, sizeof(visited));
-    dfs(si, sj);
+    int count_apartments = 0;
 
-    if (visited[di][dj])
-        cout << "YES\n";
-    else
-        cout << "NO\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (grid[i][j] == '.' && !visited[i][j])
+            {
+                dfs(i, j);
+                count_apartments++;
+            }
+        }
+    }
+
+    cout << count_apartments << endl;
 
     return 0;
 }
