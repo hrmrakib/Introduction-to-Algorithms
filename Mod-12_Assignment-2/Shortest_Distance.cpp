@@ -1,43 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
-{
-    int n, e;
-    cin >> n >> e;
+const long long INF = 1e15;
 
-    const long long INF = 1e15;
-    long long adj[n + 1][n + 1];
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= n; j++)
-            adj[i][j] = (i == j ? 0 : INF);
+    int n, m;
+    cin >> n >> m;
 
-    while (e--)
-    {
+    vector<vector<long long>> dist(n + 1, vector<long long>(n + 1, INF));
+
+    for (int i = 1; i <= n; i++) dist[i][i] = 0;
+
+    for (int i = 0; i < m; i++) {
         int a, b;
         long long c;
         cin >> a >> b >> c;
-        if (adj[a][b] > c)
-            adj[a][b] = c;
+        dist[a][b] = min(dist[a][b], c); 
     }
 
-    for (int k = 1; k <= n; k++)
-        for (int i = 1; i <= n; i++)
-            for (int j = 1; j <= n; j++)
-                if (adj[i][k] != INF && adj[k][j] != INF && adj[i][j] > adj[i][k] + adj[k][j])
-                    adj[i][j] = adj[i][k] + adj[k][j];
+    for (int k = 1; k <= n; k++) {
+        for (int i = 1; i <= n; i++) {
+            if (dist[i][k] == INF) continue;
+            for (int j = 1; j <= n; j++) {
+                if (dist[k][j] == INF) continue;
+                if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                }
+            }
+        }
+    }
 
     int q;
     cin >> q;
-    while (q--)
-    {
-        int u, v;
-        cin >> u >> v;
-        if (adj[u][v] == INF)
-            cout << "Not Possible\n";
-        else
-            cout << adj[u][v] << "\n";
+    while (q--) {
+        int s, t;
+        cin >> s >> t;
+        if (dist[s][t] >= INF / 2) cout << -1 << "\n";
+        else cout << dist[s][t] << "\n";
     }
 
     return 0;
