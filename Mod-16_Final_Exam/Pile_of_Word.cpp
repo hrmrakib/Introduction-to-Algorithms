@@ -1,24 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool isPileOfWord(const string &a, const string &b) {
-    if (a.length() != b.length()) return false;
-    string x = a, y = b;
-    sort(x.begin(), x.end());
-    sort(y.begin(), y.end());
-    return x == y;
+bool isPileOfWord(string a, string b)
+{
+    if (a.size() != b.size())
+        return false;
+
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+
+    return a == b;
 }
 
-int main() {
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int t;
     cin >> t;
-    while (t--) {
-        string s1, s2;
-        cin >> s1 >> s2;
-        if (isPileOfWord(s1, s2))
+
+    while (t--)
+    {
+        string a, b;
+        cin >> a >> b;
+
+        if (isPileOfWord(a, b))
             cout << "YES\n";
         else
             cout << "NO\n";
     }
+
     return 0;
 }
