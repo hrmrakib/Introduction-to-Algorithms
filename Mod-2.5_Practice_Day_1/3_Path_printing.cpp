@@ -61,10 +61,11 @@ int main()
         path.push_back(node);
         node = parent[node];
     }
+
     reverse(path.begin(), path.end());
-    for (int i = 0; i < path.size(); i++)
+    for (int x : path)
     {
-        cout << path[i] << " ";
+        cout << x << " ";
     }
     cout << endl;
 

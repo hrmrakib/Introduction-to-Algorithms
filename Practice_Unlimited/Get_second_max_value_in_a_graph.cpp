@@ -15,7 +15,7 @@ void bfs(int src)
         int parent = q.front();
         q.pop();
 
-        // cout << parent << " ";
+        cout << parent << " ";
 
         for (int val : adj_list[parent])
         {
@@ -28,8 +28,25 @@ void bfs(int src)
     }
 }
 
+void dfs(int src)
+{
+    cout << src << " ";
+    visited[src] = true;
+
+    for (int val : adj_list[src])
+    {
+        if (!visited[val])
+        {
+            dfs(val);
+        }
+    }
+}
+
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
     int n, e;
     cin >> n >> e;
 
@@ -41,16 +58,12 @@ int main()
         adj_list[b].push_back(a);
     }
 
+    int src;
+    cin >> src;
+
     memset(visited, false, sizeof(visited));
-
-    int src, dst;
-    cin >> src >> dst;
-    bfs(src);
-
-    if (visited[dst])
-        cout << "YES\n";
-    else
-        cout << "NO\n";
+    // bfs(src);
+    dfs(src);
 
     return 0;
 }
